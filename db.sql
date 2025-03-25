@@ -18,11 +18,11 @@ telefono varchar(20)
 CREATE TABLE Ubicaciones (
 id INT PRIMARY KEY AUTO_INCREMENT,
 entidad_id INT NOT NULL,
-entidad_tipo VARCHAR(50) NOT NULL, 
+entidad_tipo VARCHAR(50) NOT NULL, -- Puede ser 'Cliente', 'Empleado', etc.
 ciudad_id INT NOT NULL,
 direccion VARCHAR(200) NOT NULL,
 codigo_postal VARCHAR(10) NOT NULL,
-FOREIGN KEY (ciudad_id) REFERENCES Ciudad(id) ON DELETE CASCADE
+FOREIGN KEY (ciudad_id) REFERENCES Ciudad(id) 
 );
 
 CREATE TABLE Pais (
@@ -34,7 +34,7 @@ CREATE TABLE Estado (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nombre VARCHAR(50) NOT NULL,
 pais_id INT NOT NULL,
-FOREIGN KEY (pais_id) REFERENCES Pais(id) ON DELETE CASCADE
+FOREIGN KEY (pais_id) REFERENCES Pais(id) 
 );
 
 -- Tabla Ciudad (Relacionado con Estado)
@@ -42,7 +42,7 @@ CREATE TABLE Ciudad (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nombre VARCHAR(45) NOT NULL,
 estado_id INT NOT NULL,
-FOREIGN KEY (estado_id) REFERENCES Estado(id) ON DELETE CASCADE
+FOREIGN KEY (estado_id) REFERENCES Estado(id) 
 );
 
 
@@ -83,8 +83,8 @@ empleado_id INT NOT NULL,
 proveedor_id INT NOT NULL,
 fecha_relacion DATE NOT NULL,
 PRIMARY KEY (empleado_id, proveedor_id),
-FOREIGN KEY (empleado_id) REFERENCES Empleados(id) ON DELETE CASCADE,
-FOREIGN KEY (proveedor_id) REFERENCES Proveedores(id) ON DELETE CASCADE
+FOREIGN KEY (empleado_id) REFERENCES Empleados(id),
+FOREIGN KEY (proveedor_id) REFERENCES Proveedores(id) 
 );
 
 
@@ -103,7 +103,7 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 tipo_nombre VARCHAR(80),
 descripcion TEXT,
 parent_id INT NULL,   
-FOREIGN KEY (parent_id) REFERENCES TiposProductos(id) ON DELETE CASCADE
+FOREIGN KEY (parent_id) REFERENCES TiposProductos(id)
 );
 -- Tabla Productos
 CREATE TABLE Productos (
@@ -112,8 +112,8 @@ nombre VARCHAR(80),
 precio DECIMAL(10, 2),
 proveedor_id INT,
 tipo_id INT,
-FOREIGN KEY (proveedor_id) REFERENCES Proveedores(id) ON DELETE CASCADE,
-FOREIGN KEY (tipo_id) REFERENCES TiposProductos(id) ON DELETE CASCADE
+FOREIGN KEY (proveedor_id) REFERENCES Proveedores(id),
+FOREIGN KEY (tipo_id) REFERENCES TiposProductos(id)
 );
 -- Tabla Pedidos
 CREATE TABLE Pedidos (
