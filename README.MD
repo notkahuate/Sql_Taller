@@ -1,3 +1,4 @@
+# Kevin Bueno
 # README - Consultas SQL
 
 Este archivo contiene una serie de consultas SQL diseñadas para extraer información clave de una base de datos con entidades como Clientes, Pedidos, Productos, Empleados, Proveedores, entre otras.
