@@ -51,7 +51,7 @@ fechaCambio Date,
 tipoCambio int
 );
 
--- Tabla Empleados
+
 CREATE TABLE Empleados (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nombre VARCHAR(45)
@@ -72,7 +72,7 @@ PRIMARY KEY (idEmpleado, idPuesto),
 FOREIGN KEY (idPuesto) REFERENCES Puestos(idPuesto)
 );
 
--- Tabla Proveedores
+
 CREATE TABLE Proveedores (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nombre VARCHAR(80)
@@ -97,7 +97,6 @@ PRIMARY KEY(id),
 FOREIGN KEY (proveedor_id) REFERENCES Proveedores(id)
 );
 
--- Tabla TiposProductos
 CREATE TABLE TiposProductos (
 id INT PRIMARY KEY AUTO_INCREMENT,
 tipo_nombre VARCHAR(80),
@@ -124,6 +123,7 @@ cliente_id INT,
 fecha DATE,
 total DECIMAL(10, 2),
 FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
+
 );
 
 
