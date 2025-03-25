@@ -52,7 +52,6 @@ JOIN Ciudad ci ON uc.ciudad_id = ci.id
 JOIN Ubicaciones up ON up.ciudad_id = ci.id AND up.entidad_tipo = 'Proveedor'
 JOIN Proveedores prov ON up.entidad_id = prov.id;
 
-
 SELECT tp.tipo_nombre, SUM(dp.cantidad * dp.precio) AS total_ventas
 FROM DetallesPedido dp
 JOIN Productos pr ON dp.producto_id = pr.id

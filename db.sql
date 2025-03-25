@@ -123,7 +123,6 @@ cliente_id INT,
 fecha DATE,
 total DECIMAL(10, 2),
 FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
-
 );
 
 

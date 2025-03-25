@@ -26,7 +26,6 @@ FROM Clientes c
 LEFT JOIN Pedidos p ON c.id = p.cliente_id
 GROUP BY c.nombre;
 
-
 SELECT e.nombre AS EmpleadoNombre, p.id AS PedidoID
 FROM Pedidos p
 INNER JOIN Empleados e ON p.id = e.id; 

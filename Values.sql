@@ -10,6 +10,7 @@ VALUES
 (2, '555-5678'),
 (3, '555-9876');
 
+
 INSERT INTO Pais (nombre)
 VALUES
 ('México'),

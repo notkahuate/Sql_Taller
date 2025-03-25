@@ -281,5 +281,83 @@ GROUP BY prov.nombre;
 
 ---
 
+## 5. Subconsultas
+
+### 1. Consultar el producto más caro en cada categoría
+```sql
+SELECT nombre, precio, tipo_id
+FROM Productos p
+WHERE precio = (SELECT MAX(precio) FROM Productos WHERE tipo_id = p.tipo_id);
+```
+
+### 2. Encontrar el cliente con mayor total en pedidos
+```sql
+SELECT c.nombre
+FROM Clientes c
+WHERE c.id = (SELECT p.cliente_id FROM Pedidos p GROUP BY p.cliente_id ORDER BY SUM(p.total) DESC LIMIT 1);
+```
+
+### 3. Listar empleados que ganan más que el salario promedio
+```sql
+SELECT e.nombre
+FROM Empleados e
+JOIN DatosEmpleados de ON e.id = de.idEmpleado
+WHERE de.salario > (SELECT AVG(salario) FROM DatosEmpleados);
+```
+
+### 4. Consultar productos que han sido pedidos más de 5 veces
+```sql
+SELECT pr.nombre
+FROM Productos pr
+WHERE pr.id IN (SELECT producto_id FROM DetallesPedido GROUP BY producto_id HAVING SUM(cantidad) > 5);
+```
+
+### 5. Listar pedidos cuyo total es mayor al promedio de todos los pedidos
+```sql
+SELECT * FROM Pedidos
+WHERE total > (SELECT AVG(total) FROM Pedidos);
+```
+
+### 6. Seleccionar los 3 proveedores con más productos
+```sql
+SELECT prov.nombre
+FROM Proveedores prov
+JOIN Productos pr ON prov.id = pr.proveedor_id
+GROUP BY prov.nombre
+ORDER BY COUNT(pr.id) DESC
+LIMIT 3;
+```
+
+### 7. Consultar productos con precio superior al promedio en su tipo
+```sql
+SELECT nombre
+FROM Productos p
+WHERE precio > (SELECT AVG(precio) FROM Productos WHERE tipo_id = p.tipo_id);
+```
+
+### 8. Mostrar clientes que han realizado más pedidos que la media
+```sql
+SELECT c.nombre
+FROM Clientes c
+JOIN Pedidos p ON c.id = p.cliente_id
+GROUP BY c.nombre
+HAVING COUNT(p.id) > (SELECT AVG(pedidos_por_cliente) FROM (SELECT COUNT(*) AS pedidos_por_cliente FROM Pedidos GROUP BY cliente_id) AS sub);
+```
+
+### 9. Encontrar productos cuyo precio es mayor que el promedio de todos los productos
+```sql
+SELECT nombre
+FROM Productos
+WHERE precio > (SELECT AVG(precio) FROM Productos);
+```
+
+### 10. Mostrar empleados cuyo salario es menor al promedio general
+```sql
+SELECT e.nombre
+FROM Empleados e
+JOIN DatosEmpleados de ON e.id = de.idEmpleado
+WHERE de.salario < (SELECT AVG(salario) FROM DatosEmpleados);
+```
+
 
 

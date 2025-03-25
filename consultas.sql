@@ -8,7 +8,6 @@ JOIN Ubicaciones u ON u.entidad_id = c.id AND u.entidad_tipo = 'Cliente'
 JOIN Ciudad ci ON u.ciudad_id = ci.id
 WHERE ci.nombre = 'Guadalajara';
 
-
 SELECT e.nombre, de.fecha_contratacion
 FROM Empleados e
 JOIN DatosEmpleados de ON e.id = de.idEmpleado
